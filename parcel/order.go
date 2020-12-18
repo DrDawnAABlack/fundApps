@@ -25,10 +25,11 @@ func NewOrder() *Order {
 }
 
 func (r Order) applyDiscount() float64 {
-    discount := float64(0)
+    //discount := float64(0)
 
-    discountAfterSmallMania, pricedParcelsAfterSmallMania := smallMania(r.PricedParcels)
-    discount = discount + discountAfterSmallMania
+    //discountAfterSmallMania, pricedParcelsAfterSmallMania := smallMania(r.PricedParcels)
+    //discount = discount + discountAfterSmallMania
+
 
     return 0
 }
