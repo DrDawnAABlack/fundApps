@@ -47,7 +47,7 @@ func main() {
             break
         }
 
-        // assumed input format
+        // assumed input format for each line
         // parcel_id | d1 | d2 | d3
         // where d represents a dimension
         newParcel, err := parseDimensions(row)
@@ -63,8 +63,14 @@ func main() {
         pricedParcel := parcel.PricedParcel{
             Parcel: newParcel,
         }
-        pricedParcel.Cost, pricedParcel.Classification = newParcel.CostDueToSize()
-        pricedParcel.Cost = pricedParcel.Cost + pricedParcel.CostDueToWeight()
+
+        if pricedParcel.Parcel.IsExtraHeavy() {
+            pricedParcel.Classification = "extraHeavy"
+            pricedParcel.Cost = pricedParcel.CostDueToWeight()
+        } else {
+            pricedParcel.Cost, pricedParcel.Classification = newParcel.CostDueToSize()
+            pricedParcel.Cost = pricedParcel.Cost + pricedParcel.CostDueToWeight()
+        }
 
         order.PricedParcels[pricedParcel.Parcel.Id] = &pricedParcel
 

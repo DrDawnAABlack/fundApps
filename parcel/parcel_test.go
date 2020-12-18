@@ -19,9 +19,9 @@ func TestParcelPricingBySize(t *testing.T) {
         {
             name: "all dimensions small",
             parcel: Parcel{
-                D1: 2,
-                D2: 3,
-                D3: 4,
+                d1: 2,
+                d2: 3,
+                d3: 4,
             },
             expectedCost: 3.00,
             expectedClassification: "small",
@@ -29,9 +29,9 @@ func TestParcelPricingBySize(t *testing.T) {
         {
             name: "all dimensions medium",
             parcel: Parcel{
-                D1: 25,
-                D2: 36,
-                D3: 42,
+                d1: 25,
+                d2: 36,
+                d3: 42,
             },
             expectedCost: 8.00,
             expectedClassification: "medium",
@@ -39,9 +39,9 @@ func TestParcelPricingBySize(t *testing.T) {
         {
             name: "all dimensions large",
             parcel: Parcel{
-                D1: 66,
-                D2: 77,
-                D3: 88,
+                d1: 66,
+                d2: 77,
+                d3: 88,
             },
             expectedCost: 15.00,
             expectedClassification: "large",
@@ -49,9 +49,9 @@ func TestParcelPricingBySize(t *testing.T) {
         {
             name: "all dimensions extra large",
             parcel: Parcel{
-                D1: 100,
-                D2: 100,
-                D3: 100,
+                d1: 100,
+                d2: 100,
+                d3: 100,
             },
             expectedCost: 25.00,
             expectedClassification: "extraLarge",
@@ -59,9 +59,9 @@ func TestParcelPricingBySize(t *testing.T) {
         {
             name: "mixed dimensions medium",
             parcel: Parcel{
-                D1: 1,
-                D2: 1,
-                D3: 42,
+                d1: 1,
+                d2: 1,
+                d3: 42,
             },
             expectedCost: 8.00,
             expectedClassification: "medium",
@@ -69,9 +69,9 @@ func TestParcelPricingBySize(t *testing.T) {
         {
             name: "mixed dimensions large",
             parcel: Parcel{
-                D1: 1,
-                D2: 1,
-                D3: 88,
+                d1: 1,
+                d2: 1,
+                d3: 88,
             },
             expectedCost: 15.00,
             expectedClassification: "large",
@@ -79,9 +79,9 @@ func TestParcelPricingBySize(t *testing.T) {
         {
             name: "mixed dimensions extra large",
             parcel: Parcel{
-                D1: 1,
-                D2: 1,
-                D3: 100,
+                d1: 1,
+                d2: 1,
+                d3: 100,
             },
             expectedCost: 25.00,
             expectedClassification: "extraLarge",
@@ -101,9 +101,9 @@ func TestParcelPricingBySize(t *testing.T) {
 func TestParcelPricingByWeight(t *testing.T) {
 
     type testCase struct {
-        name         string
-        pricedParcel       PricedParcel
-        expectedExtraWeightCost float64
+        name                    string
+        pricedParcel            PricedParcel
+        expectedCostDueToWeight float64
     }
 
     var testCases = []testCase{
@@ -111,112 +111,138 @@ func TestParcelPricingByWeight(t *testing.T) {
             name: "small not overweight",
             pricedParcel: PricedParcel{
                 Parcel: &Parcel{
-                    D1:     2,
-                    D2:     3,
-                    D3:     4,
-                    Weight: smallParcelWeightLimit,
+                    d1:     2,
+                    d2:     3,
+                    d3:     4,
+                    weight: smallParcelWeightLimit,
                 },
                 Classification: "small",
             },
-            expectedExtraWeightCost: 0,
+            expectedCostDueToWeight: 0,
         },
         {
             name: "medium not overweight",
             pricedParcel: PricedParcel{
                 Parcel: &Parcel{
-                    D1:     30,
-                    D2:     30,
-                    D3:     30,
-                    Weight: mediumParcelWeightLimit,
+                    d1:     30,
+                    d2:     30,
+                    d3:     30,
+                    weight: mediumParcelWeightLimit,
                 },
                 Classification: "medium",
             },
-            expectedExtraWeightCost: 0,
+            expectedCostDueToWeight: 0,
         },
         {
             name: "large not overweight",
             pricedParcel: PricedParcel{
                 Parcel: &Parcel{
-                    D1:     90,
-                    D2:     90,
-                    D3:     90,
-                    Weight: largeParcelWeightLimit,
+                    d1:     90,
+                    d2:     90,
+                    d3:     90,
+                    weight: largeParcelWeightLimit,
                 },
                 Classification: "large",
             },
-            expectedExtraWeightCost: 0,
+            expectedCostDueToWeight: 0,
         },
         {
             name: "extra large not overweight",
             pricedParcel: PricedParcel{
                 Parcel: &Parcel{
-                    D1:     200,
-                    D2:     300,
-                    D3:     400,
-                    Weight: extraLargeParcelWeightLimit,
+                    d1:     200,
+                    d2:     300,
+                    d3:     400,
+                    weight: extraLargeParcelWeightLimit,
                 },
                 Classification: "extraLarge",
             },
-            expectedExtraWeightCost: 0,
+            expectedCostDueToWeight: 0,
         },
         {
             name: "small overweight",
             pricedParcel: PricedParcel{
                 Parcel: &Parcel{
-                    D1:     2,
-                    D2:     3,
-                    D3:     4,
-                    Weight: 5,
+                    d1:     2,
+                    d2:     3,
+                    d3:     4,
+                    weight: 5,
                 },
                 Classification: "small",
             },
-            expectedExtraWeightCost: 8,
+            expectedCostDueToWeight: 8,
         },
         {
             name: "medium overweight",
             pricedParcel: PricedParcel{
                 Parcel: &Parcel{
-                    D1:     30,
-                    D2:     30,
-                    D3:     30,
-                    Weight: 5.1,
+                    d1:     30,
+                    d2:     30,
+                    d3:     30,
+                    weight: 5.1,
                 },
                 Classification: "medium",
             },
-            expectedExtraWeightCost: 6,
+            expectedCostDueToWeight: 6,
         },
         {
             name: "large overweight",
             pricedParcel: PricedParcel{
                 Parcel: &Parcel{
-                    D1:     90,
-                    D2:     90,
-                    D3:     90,
-                    Weight: 8.9,
+                    d1:     90,
+                    d2:     90,
+                    d3:     90,
+                    weight: 8.9,
                 },
                 Classification: "large",
             },
-            expectedExtraWeightCost: 6,
+            expectedCostDueToWeight: 6,
         },
         {
             name: "extra large overweight",
             pricedParcel: PricedParcel{
                 Parcel: &Parcel{
-                    D1:     200,
-                    D2:     300,
-                    D3:     400,
-                    Weight: 14.2,
+                    d1:     200,
+                    d2:     300,
+                    d3:     400,
+                    weight: 14.2,
                 },
                 Classification: "extraLarge",
             },
-            expectedExtraWeightCost: 10,
+            expectedCostDueToWeight: 10,
+        },
+        {
+            name: "extra heavy parcel not overweight",
+            pricedParcel: PricedParcel{
+                Parcel: &Parcel{
+                    d1:     200,
+                    d2:     300,
+                    d3:     400,
+                    weight: 50,
+                },
+                Classification: "extraHeavy",
+            },
+            expectedCostDueToWeight: 50,
+        },
+        {
+            name: "extra heavy parcel overweight",
+            pricedParcel: PricedParcel{
+                Parcel: &Parcel{
+                    d1:     200,
+                    d2:     300,
+                    d3:     400,
+                    weight: 50.4,
+                },
+                Classification: "extraHeavy",
+            },
+            expectedCostDueToWeight: 51,
         },
     }
 
     for _, tc := range testCases {
         t.Run(tc.name, func(t *testing.T) {
             cost := tc.pricedParcel.CostDueToWeight()
-            assert.Equal(t, tc.expectedExtraWeightCost, cost)
+            assert.Equal(t, tc.expectedCostDueToWeight, cost)
         })
     }
 }

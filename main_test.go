@@ -20,13 +20,7 @@ func TestParser(t *testing.T) {
         {
             name:  "happy parse",
             input: "98453 | 43 | 15 | 32425 | 276.02",
-            expectedParcel: &parcel.Parcel{
-                Id: "98453",
-                D1: 43,
-                D2: 15,
-                D3: 32425,
-                Weight: 276.02,
-            },
+            expectedParcel: parcel.NewParcel("98453", 43, 15, 32425, 276.02),
             expectedError: "",
         },
         {

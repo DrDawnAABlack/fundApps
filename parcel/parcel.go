@@ -7,27 +7,33 @@ import (
 const (
 	NumParcelFields = 5
 
+	// dimensions are in cm
 	smallParcelMaxDimension = 10
 	mediumParcelMaxDimension = 50
 	largeParcelMaxDimension = 100
+
 
 	smallParcelCost      = 3.00
 	mediumParcelCost     = 8.00
 	largeParcelCost      = 15.00
 	extraLargeParcelCost = 25.00
+	heavyParcelCost = 50.00
 
+	// weights are in Kg
 	smallParcelWeightLimit = float64(1)
 	mediumParcelWeightLimit = float64(3)
 	largeParcelWeightLimit = float64(6)
 	extraLargeParcelWeightLimit = float64(10)
+
+	heavyParcelWeightLimit = 50
 )
 
 type Parcel struct {
-	Id string
-	D1 int64
-	D2 int64
-	D3 int64
-	Weight float64
+	Id     string
+	d1     int64
+	d2     int64
+	d3     int64
+	weight float64
 }
 
 type PricedParcel struct {
@@ -38,47 +44,55 @@ type PricedParcel struct {
 
 func NewParcel(id string, d1 int64, d2 int64, d3 int64, weight float64) *Parcel {
 	return &Parcel{
-		Id: id,
-		D1: d1,
-		D2: d2,
-		D3: d3,
-		Weight: weight,
+		Id:     id,
+		d1:     d1,
+		d2:     d2,
+		d3:     d3,
+		weight: weight,
 	}
 }
 
 func (p Parcel) CostDueToSize() (float64, string) {
-	if p.D1 < smallParcelMaxDimension && p.D2 < smallParcelMaxDimension && p.D3 < smallParcelMaxDimension {
+	if p.d1 < smallParcelMaxDimension && p.d2 < smallParcelMaxDimension && p.d3 < smallParcelMaxDimension {
 		return smallParcelCost, "small"
 	}
-	if p.D1 < mediumParcelMaxDimension && p.D2 < mediumParcelMaxDimension && p.D3 < mediumParcelMaxDimension {
+	if p.d1 < mediumParcelMaxDimension && p.d2 < mediumParcelMaxDimension && p.d3 < mediumParcelMaxDimension {
 		return mediumParcelCost, "medium"
 	}
-	if p.D1 < largeParcelMaxDimension && p.D2 < largeParcelMaxDimension && p.D3 < largeParcelMaxDimension {
+	if p.d1 < largeParcelMaxDimension && p.d2 < largeParcelMaxDimension && p.d3 < largeParcelMaxDimension {
 		return largeParcelCost, "large"
 	}
-
 	return extraLargeParcelCost, "extraLarge"
 }
 
+func (p Parcel) IsExtraHeavy() bool {
+    if p.weight >= heavyParcelWeightLimit {
+        return true
+    }
+    return false
+}
+
 func (p PricedParcel) CostDueToWeight() float64 {
-	overLimitWeight := float64(0)
+    // round up because any amount over is over
+    overWeightCharge := float64(0)
 	switch p.Classification {
 	case "small":
-			overLimitWeight = p.Parcel.Weight - smallParcelWeightLimit
+        overWeightCharge = math.Ceil(p.Parcel.weight - smallParcelWeightLimit) * 2
 	case "medium":
-		overLimitWeight = p.Parcel.Weight - mediumParcelWeightLimit
+        overWeightCharge = math.Ceil(p.Parcel.weight - mediumParcelWeightLimit) * 2
 	case "large":
-		overLimitWeight = p.Parcel.Weight - largeParcelWeightLimit
+        overWeightCharge = math.Ceil(p.Parcel.weight - largeParcelWeightLimit) * 2
 	case "extraLarge":
-		overLimitWeight = p.Parcel.Weight - extraLargeParcelWeightLimit
+        overWeightCharge = math.Ceil(p.Parcel.weight - extraLargeParcelWeightLimit) * 2
+    case "extraHeavy":
+        overWeightCharge = heavyParcelCost + math.Ceil(p.Parcel.weight - heavyParcelWeightLimit)
+
 	//default: I've not included this as we set the classification so unlikely too be unknown
 	}
 
-	overWeightCharge := float64(0)
-	if overLimitWeight > 0 {
-		// round up because any amount over is over
-		overWeightCharge = math.Ceil(overLimitWeight) * 2
+	if overWeightCharge > 0 {
+		return overWeightCharge
 	}
 
-    return overWeightCharge
+    return 0
 }
