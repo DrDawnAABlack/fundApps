@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$USER_HOME$/core3/plz-out" includeSubdirectories="true" />
+      <directory url="file://$USER_HOME$/core3/documentation" includeSubdirectories="true" />
+      <directory url="file://$USER_HOME$/core3/test.results" includeSubdirectories="true" />
+    </excludeFromCompile>
+  </component>
+</project>
