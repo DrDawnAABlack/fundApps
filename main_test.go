@@ -9,12 +9,12 @@ import (
 )
 
 func TestParser(t *testing.T) {
-
     type testCase struct {
         name           string
         input          string
         expectedParcel *parcel.Parcel
         expectedError  error
+        speedyShipping bool
     }
 
     var testCases = []testCase{
@@ -33,10 +33,9 @@ func TestParser(t *testing.T) {
 
     for _, tc := range testCases {
         t.Run(tc.name, func(t *testing.T) {
-            parcel, err := ParseArgs(tc.input)
+            parcel, err := parseDimensions(tc.input)
             assert.Equal(t, tc.expectedParcel, parcel)
             assert.Equal(t, tc.expectedError, err)
         })
     }
-
 }

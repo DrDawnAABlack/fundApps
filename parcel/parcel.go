@@ -16,7 +16,7 @@ type PricedParcel struct {
 	Cost   float64
 }
 
-func New(id string, d1, d2, d3 int64) *Parcel {
+func NewParcel(id string, d1, d2, d3 int64) *Parcel {
 	return &Parcel{
 		Id: id,
 		D1: d1,

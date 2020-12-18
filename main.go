@@ -34,7 +34,9 @@ func main() {
     reader := bufio.NewReader(intputFD)
     writer := bufio.NewWriter(outputFD)
 
+    order := parcel.NewOrder()
     totalCost := float64(0)
+    speedyShipping := false
     //price each parcel
     for {
         row, err := reader.ReadString('\n')
@@ -48,36 +50,61 @@ func main() {
         // assumed input format
         // parcel_id | d1 | d2 | d3
         // where d represents a dimension
-        newParcel, err := ParseArgs(row)
+        newParcel, err := parseDimensions(row)
         if err != nil {
+            speedyShipping, err = isSpeedyShipping(row)
+            if speedyShipping{
+                // assume last row
+                break
+            }
             log.Fatalln(err)
         }
 
         pricedParcel := parcel.CostDueToSize(newParcel)
+        order.PricedParcels[pricedParcel.Parcel.Id] = pricedParcel
 
-        pricedParcelOutput := fmt.Sprintf("%s | %.2f \n", pricedParcel.Parcel.Id, pricedParcel.Cost)
-        fmt.Println(pricedParcelOutput)
-
-        _, err = writer.WriteString(pricedParcelOutput)
-        if err != nil {
-            log.Fatalln(err)
-        }
+        outputResults(fmt.Sprintf("%s | %.2f \n", pricedParcel.Parcel.Id, pricedParcel.Cost), writer)
 
         totalCost = totalCost + pricedParcel.Cost
     }
-    // output the final cost
-    totalCostMsg := fmt.Sprintf("Total = %.2f \n", totalCost)
-    fmt.Println(totalCostMsg)
-    _, err = writer.WriteString(totalCostMsg)
+
+    order.CostOfShipping = totalCost
+
+    // add speedy shipping?
+    if speedyShipping {
+        order.CostOfSpeedyShipping = totalCost * 2
+    }
+
+    // output the final cost of the parcels
+    outputResults(fmt.Sprintf("Total = %.2f \n", order.CostOfShipping), writer)
+    if speedyShipping {
+        outputResults(fmt.Sprintf("Total with speedy shipping = %.2f \n", order.CostOfSpeedyShipping), writer)
+    }
+
     writer.Flush()
+}
+
+func outputResults(msg string, writer *bufio.Writer) {
+    fmt.Println(msg)
+    _, err := writer.WriteString(msg)
     if err != nil {
         log.Fatalln(err)
     }
 }
+func isSpeedyShipping(row string) (bool, error){
+    fmt.Println(row)
+    if row == "" {
+        return false, nil
+    }
+    // would love to get rid of the \n here
+    if row == "speedy\n" {
+        return true, nil
+    }
+    return false, errors.New("invalid input format")
+}
 
-
-func ParseArgs(args string) (*parcel.Parcel, error) {
-    vars := strings.Split(args, "|")
+func parseDimensions(row string) (*parcel.Parcel, error) {
+    vars := strings.Split(row, "|")
     if len(vars) != parcel.NumParcelFields {
         return nil, errors.New("not enough input fields to create a package")
     }
@@ -99,11 +126,10 @@ func ParseArgs(args string) (*parcel.Parcel, error) {
     if err != nil {
         return nil, errors.New(fmt.Sprintf("error converting input [%v]: [%v]", vars, err))
     }
-
     if d1 <= 0 || d2 <= 0 || d3 <= 0 {
-        return nil, errors.New(fmt.Sprintf("at least one dimensio is invalid [%v]", args))
+        return nil, errors.New(fmt.Sprintf("at least one dimension is invalid [%v]", vars))
     }
-    parcel := parcel.New(strings.TrimSpace(vars[0]), int64(d1), int64(d2), int64(d3))
+    parcel := parcel.NewParcel(strings.TrimSpace(vars[0]), int64(d1), int64(d2), int64(d3))
 
     return parcel, nil
 }
