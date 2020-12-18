@@ -1,6 +1,8 @@
 package parcel
 
-import ()
+import (
+	"math"
+)
 
 const (
 	NumParcelFields = 4
@@ -14,10 +16,10 @@ const (
 	largeParcelCost      = 15.00
 	extraLargeParcelCost = 25.00
 
-	smallParcelWeightLimit = 1
-	mediumParcelWeightLimit = 3
-	largeParcelWeightLimit = 6
-	extraLargeParcelWeightLimit = 10
+	smallParcelWeightLimit = float64(1)
+	mediumParcelWeightLimit = float64(3)
+	largeParcelWeightLimit = float64(6)
+	extraLargeParcelWeightLimit = float64(10)
 )
 
 type Parcel struct {
@@ -25,7 +27,7 @@ type Parcel struct {
 	D1 int64
 	D2 int64
 	D3 int64
-	Weight int64
+	Weight float64
 }
 
 type PricedParcel struct {
@@ -43,21 +45,39 @@ func NewParcel(id string, d1, d2, d3 int64) *Parcel {
 	}
 }
 
-func CostDueToSize(parcel *Parcel) (float64, string) {
-	if parcel.D1 < smallParcelMaxDimension && parcel.D2 < smallParcelMaxDimension && parcel.D3 < smallParcelMaxDimension {
+func (p Parcel) CostDueToSize() (float64, string) {
+	if p.D1 < smallParcelMaxDimension && p.D2 < smallParcelMaxDimension && p.D3 < smallParcelMaxDimension {
 		return smallParcelCost, "small"
 	}
-	if parcel.D1 < mediumParcelMaxDimension && parcel.D2 < mediumParcelMaxDimension && parcel.D3 < mediumParcelMaxDimension {
+	if p.D1 < mediumParcelMaxDimension && p.D2 < mediumParcelMaxDimension && p.D3 < mediumParcelMaxDimension {
 		return mediumParcelCost, "medium"
 	}
-	if parcel.D1 < largeParcelMaxDimension && parcel.D2 < largeParcelMaxDimension && parcel.D3 < largeParcelMaxDimension {
+	if p.D1 < largeParcelMaxDimension && p.D2 < largeParcelMaxDimension && p.D3 < largeParcelMaxDimension {
 		return largeParcelCost, "large"
 	}
 
 	return extraLargeParcelCost, "extraLarge"
 }
 
-func CostDueToWeight(parcel *Parcel) float64 {
+func (p PricedParcel) CostDueToWeight() float64 {
+	overLimitWeight := float64(0)
+	switch p.Classification {
+	case "small":
+			overLimitWeight = p.Parcel.Weight - smallParcelWeightLimit
+	case "medium":
+		overLimitWeight = p.Parcel.Weight - mediumParcelWeightLimit
+	case "large":
+		overLimitWeight = p.Parcel.Weight - largeParcelWeightLimit
+	case "extraLarge":
+		overLimitWeight = p.Parcel.Weight - extraLargeParcelWeightLimit
+	//default: I've not included this as we set the classification so unlikely too be unknown
+	}
 
-    return 0
+	overWeightCharge := float64(0)
+	if overLimitWeight > 0 {
+		// round up because any amount over is over
+		overWeightCharge = math.Ceil(overLimitWeight) * 2
+	}
+
+    return overWeightCharge
 }

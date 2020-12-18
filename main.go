@@ -63,7 +63,8 @@ func main() {
         pricedParcel := parcel.PricedParcel{
             Parcel: newParcel,
         }
-        pricedParcel.Cost, pricedParcel.Classification = parcel.CostDueToSize(newParcel)
+        pricedParcel.Cost, pricedParcel.Classification = newParcel.CostDueToSize()
+        pricedParcel.Cost = pricedParcel.Cost + pricedParcel.CostDueToWeight()
 
         order.PricedParcels[pricedParcel.Parcel.Id] = &pricedParcel
 
