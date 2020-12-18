@@ -35,7 +35,7 @@ func main() {
     writer := bufio.NewWriter(outputFD)
 
     order := parcel.NewOrder()
-    totalCost := float64(0)
+    totalCostWithoutDiscount := float64(0)
     speedyShipping := false
     //price each parcel
     for {
@@ -76,19 +76,18 @@ func main() {
 
         outputResults(fmt.Sprintf("%s | %.2f \n", pricedParcel.Parcel.Id, pricedParcel.Cost), writer)
 
-        totalCost = totalCost + pricedParcel.Cost
+        totalCostWithoutDiscount = totalCostWithoutDiscount + pricedParcel.Cost
     }
 
-    order.CostOfShipping = totalCost
+    order.CostOfShipping = totalCostWithoutDiscount
 
-    // add speedy shipping?
-    if speedyShipping {
-        order.CostOfSpeedyShipping = totalCost * 2
-    }
+    // apply any discounts
+
 
     // output the final cost of the parcels
     outputResults(fmt.Sprintf("Total = %.2f \n", order.CostOfShipping), writer)
     if speedyShipping {
+        order.CostOfSpeedyShipping = totalCostWithoutDiscount * 2
         outputResults(fmt.Sprintf("Total with speedy shipping = %.2f \n", order.CostOfSpeedyShipping), writer)
     }
 
