@@ -12,6 +12,7 @@ func TestParcelPricingBySize(t *testing.T) {
         name         string
         parcel       *Parcel
         expectedCost float64
+        expectedClassification string
     }
 
     var testCases = []testCase{
@@ -24,6 +25,7 @@ func TestParcelPricingBySize(t *testing.T) {
                 D3: 4,
             },
             expectedCost: 3.00,
+            expectedClassification: "small",
         },
         {
             name: "all dimensions medium",
@@ -34,6 +36,7 @@ func TestParcelPricingBySize(t *testing.T) {
                 D3: 42,
             },
             expectedCost: 8.00,
+            expectedClassification: "medium",
         },
         {
             name: "all dimensions large",
@@ -44,6 +47,7 @@ func TestParcelPricingBySize(t *testing.T) {
                 D3: 88,
             },
             expectedCost: 15.00,
+            expectedClassification: "large",
         },
         {
             name: "all dimensions extra large",
@@ -54,6 +58,7 @@ func TestParcelPricingBySize(t *testing.T) {
                 D3: 100,
             },
             expectedCost: 25.00,
+            expectedClassification: "extraLarge",
         },
         {
             name: "mixed dimensions medium",
@@ -64,6 +69,7 @@ func TestParcelPricingBySize(t *testing.T) {
                 D3: 42,
             },
             expectedCost: 8.00,
+            expectedClassification: "medium",
         },
         {
             name: "mixed dimensions large",
@@ -74,6 +80,7 @@ func TestParcelPricingBySize(t *testing.T) {
                 D3: 88,
             },
             expectedCost: 15.00,
+            expectedClassification: "large",
         },
         {
             name: "mixed dimensions extra large",
@@ -84,13 +91,15 @@ func TestParcelPricingBySize(t *testing.T) {
                 D3: 100,
             },
             expectedCost: 25.00,
+            expectedClassification: "extraLarge",
         },
     }
 
     for _, tc := range testCases {
         t.Run(tc.name, func(t *testing.T) {
-            cost := CostDueToSize(tc.parcel)
+            cost, classification := CostDueToSize(tc.parcel)
             assert.Equal(t, tc.expectedCost, cost)
+            assert.Equal(t, tc.expectedClassification, classification)
         })
     }
 }

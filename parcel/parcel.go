@@ -31,6 +31,7 @@ type Parcel struct {
 type PricedParcel struct {
 	Parcel *Parcel
 	Cost   float64
+	Classification string
 }
 
 func NewParcel(id string, d1, d2, d3 int64) *Parcel {
@@ -42,18 +43,18 @@ func NewParcel(id string, d1, d2, d3 int64) *Parcel {
 	}
 }
 
-func CostDueToSize(parcel *Parcel) float64 {
+func CostDueToSize(parcel *Parcel) (float64, string) {
 	if parcel.D1 < smallParcelMaxDimension && parcel.D2 < smallParcelMaxDimension && parcel.D3 < smallParcelMaxDimension {
-		return smallParcelCost
+		return smallParcelCost, "small"
 	}
 	if parcel.D1 < mediumParcelMaxDimension && parcel.D2 < mediumParcelMaxDimension && parcel.D3 < mediumParcelMaxDimension {
-		return mediumParcelCost
+		return mediumParcelCost, "medium"
 	}
 	if parcel.D1 < largeParcelMaxDimension && parcel.D2 < largeParcelMaxDimension && parcel.D3 < largeParcelMaxDimension {
-		return largeParcelCost
+		return largeParcelCost, "large"
 	}
 
-	return extraLargeParcelCost
+	return extraLargeParcelCost, "extraLarge"
 }
 
 func CostDueToWeight(parcel *Parcel) float64 {
