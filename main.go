@@ -51,9 +51,12 @@ func main() {
             log.Fatalln(err)
         }
 
-        outputMsg := fmt.Sprintf("%s | %d | %d | %d \n", newParcel.Id, newParcel.D1, newParcel.D2, newParcel.D3)
-        fmt.Println(outputMsg)
-        _, err = writer.WriteString(outputMsg)
+        pricedParcel := parcel.CostDueToSize(newParcel)
+
+        pricedParcelOutput := fmt.Sprintf("%s | %.2f \n", pricedParcel.Parcel.Id, pricedParcel.Cost)
+        fmt.Println(pricedParcelOutput)
+
+        _, err = writer.WriteString(pricedParcelOutput)
         if err != nil {
             log.Fatalln(err)
         }
