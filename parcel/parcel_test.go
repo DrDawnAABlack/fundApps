@@ -89,8 +89,8 @@ func TestParcelPricingBySize(t *testing.T) {
 
     for _, tc := range testCases {
         t.Run(tc.name, func(t *testing.T) {
-            pricedParcel := CostDueToSize(tc.parcel)
-            assert.Equal(t, tc.expectedCost, pricedParcel.Cost)
+            cost := CostDueToSize(tc.parcel)
+            assert.Equal(t, tc.expectedCost, cost)
         })
     }
 }

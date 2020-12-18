@@ -2,13 +2,30 @@ package parcel
 
 import ()
 
-const NumParcelFields = 4
+const (
+	NumParcelFields = 4
+
+	smallParcelMaxDimension = 10
+	mediumParcelMaxDimension = 50
+	largeParcelMaxDimension = 100
+
+	smallParcelCost      = 3.00
+	mediumParcelCost     = 8.00
+	largeParcelCost      = 15.00
+	extraLargeParcelCost = 25.00
+
+	smallParcelWeightLimit = 1
+	mediumParcelWeightLimit = 3
+	largeParcelWeightLimit = 6
+	extraLargeParcelWeightLimit = 10
+)
 
 type Parcel struct {
 	Id string
 	D1 int64
 	D2 int64
 	D3 int64
+	Weight int64
 }
 
 type PricedParcel struct {
@@ -25,23 +42,21 @@ func NewParcel(id string, d1, d2, d3 int64) *Parcel {
 	}
 }
 
-func CostDueToSize(parcel *Parcel) *PricedParcel {
-	pricedParcel := &PricedParcel{
-		Parcel: parcel,
+func CostDueToSize(parcel *Parcel) float64 {
+	if parcel.D1 < smallParcelMaxDimension && parcel.D2 < smallParcelMaxDimension && parcel.D3 < smallParcelMaxDimension {
+		return smallParcelCost
 	}
-	if parcel.D1 < 10 && parcel.D2 < 10 && parcel.D3 < 10 {
-		pricedParcel.Cost = 3.00
-		return pricedParcel
+	if parcel.D1 < mediumParcelMaxDimension && parcel.D2 < mediumParcelMaxDimension && parcel.D3 < mediumParcelMaxDimension {
+		return mediumParcelCost
 	}
-	if parcel.D1 < 50 && parcel.D2 < 50 && parcel.D3 < 50 {
-		pricedParcel.Cost = 8.00
-		return pricedParcel
-	}
-	if parcel.D1 < 100 && parcel.D2 < 100 && parcel.D3 < 100 {
-		pricedParcel.Cost = 15.00
-		return pricedParcel
+	if parcel.D1 < largeParcelMaxDimension && parcel.D2 < largeParcelMaxDimension && parcel.D3 < largeParcelMaxDimension {
+		return largeParcelCost
 	}
 
-	pricedParcel.Cost = 25.00
-	return pricedParcel
+	return extraLargeParcelCost
+}
+
+func CostDueToWeight(parcel *Parcel) float64 {
+
+    return 0
 }

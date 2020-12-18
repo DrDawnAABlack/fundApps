@@ -60,8 +60,12 @@ func main() {
             log.Fatalln(err)
         }
 
-        pricedParcel := parcel.CostDueToSize(newParcel)
-        order.PricedParcels[pricedParcel.Parcel.Id] = pricedParcel
+        pricedParcel := parcel.PricedParcel{
+            Parcel: newParcel,
+        }
+        pricedParcel.Cost = parcel.CostDueToSize(newParcel)
+
+        order.PricedParcels[pricedParcel.Parcel.Id] = &pricedParcel
 
         outputResults(fmt.Sprintf("%s | %.2f \n", pricedParcel.Parcel.Id, pricedParcel.Cost), writer)
 
