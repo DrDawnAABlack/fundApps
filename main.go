@@ -34,6 +34,8 @@ func main() {
     reader := bufio.NewReader(intputFD)
     writer := bufio.NewWriter(outputFD)
 
+    totalCost := float64(0)
+    //price each parcel
     for {
         row, err := reader.ReadString('\n')
         if err != nil && err != io.EOF {
@@ -60,8 +62,17 @@ func main() {
         if err != nil {
             log.Fatalln(err)
         }
+
+        totalCost = totalCost + pricedParcel.Cost
     }
+    // output the final cost
+    totalCostMsg := fmt.Sprintf("Total = %.2f \n", totalCost)
+    fmt.Println(totalCostMsg)
+    _, err = writer.WriteString(totalCostMsg)
     writer.Flush()
+    if err != nil {
+        log.Fatalln(err)
+    }
 }
 
 
