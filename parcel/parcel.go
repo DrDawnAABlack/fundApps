@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	NumParcelFields = 4
+	NumParcelFields = 5
 
 	smallParcelMaxDimension = 10
 	mediumParcelMaxDimension = 50
@@ -36,12 +36,13 @@ type PricedParcel struct {
 	Classification string
 }
 
-func NewParcel(id string, d1, d2, d3 int64) *Parcel {
+func NewParcel(id string, d1 int64, d2 int64, d3 int64, weight float64) *Parcel {
 	return &Parcel{
 		Id: id,
 		D1: d1,
 		D2: d2,
 		D3: d3,
+		Weight: weight,
 	}
 }
 

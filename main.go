@@ -134,7 +134,11 @@ func parseDimensions(row string) (*parcel.Parcel, error) {
     if d1 <= 0 || d2 <= 0 || d3 <= 0 {
         return nil, errors.New(fmt.Sprintf("at least one dimension is invalid [%v]", vars))
     }
-    parcel := parcel.NewParcel(strings.TrimSpace(vars[0]), int64(d1), int64(d2), int64(d3))
+    weight, err := strconv.ParseFloat(strings.TrimSpace(vars[4]), 64)
+    if weight <= 0 {
+        return nil, errors.New(fmt.Sprintf("the weight is invalid [%s]", strings.TrimSpace(vars[4])))
+    }
+    parcel := parcel.NewParcel(strings.TrimSpace(vars[0]), int64(d1), int64(d2), int64(d3), weight)
 
     return parcel, nil
 }
