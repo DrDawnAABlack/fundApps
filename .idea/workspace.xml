@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="df8aff1f-f988-4ef1-a1d2-52faa818fbfc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main" beforeDir="false" afterPath="$PROJECT_DIR$/main" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parcel/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/parcel/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parcel/parcel.go" beforeDir="false" afterPath="$PROJECT_DIR$/parcel/parcel.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,35 +18,17 @@
   <component name="FileEditorManager">
     <splitter split-orientation="vertical" split-proportion="0.761242">
       <split-first>
-        <splitter split-orientation="horizontal" split-proportion="0.5">
+        <splitter split-orientation="horizontal" split-proportion="0.43742478">
           <split-first>
             <leaf>
               <file pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/main.go">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="403">
-                      <caret line="84" selection-start-line="84" selection-end-line="84" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/README.md">
                   <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                    <state split_layout="SPLIT">
-                      <first_editor relative-caret-position="156">
-                        <caret line="8" selection-start-line="8" selection-end-line="8" />
+                    <state split_layout="FIRST">
+                      <first_editor relative-caret-position="569">
+                        <caret line="42" selection-start-line="42" selection-end-line="42" />
                       </first_editor>
                       <second_editor />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/parcel/parcel.go">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="503">
-                      <caret line="87" column="96" selection-start-line="87" selection-start-column="96" selection-end-line="87" selection-end-column="96" />
                     </state>
                   </provider>
                 </entry>
@@ -65,7 +49,7 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/parcel/order.go">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="329">
+                    <state relative-caret-position="611">
                       <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
                     </state>
                   </provider>
@@ -76,6 +60,24 @@
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="420">
                       <caret line="233" column="33" selection-start-line="233" selection-start-column="33" selection-end-line="233" selection-end-column="33" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/main.go">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="-399">
+                      <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/parcel/parcel.go">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="104">
+                      <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
                     </state>
                   </provider>
                 </entry>
@@ -113,11 +115,20 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test_data/test_with_extra_heavy_package_not_overweight.txt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="39">
                   <caret line="3" selection-start-line="3" selection-end-line="3" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test_data/test_with_extra_heavy_package_not_overweight_invoice.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="13">
+                  <caret line="1" column="7" lean-forward="true" selection-end-line="3" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
@@ -145,22 +156,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test_data/test_one.txt" />
         <option value="$PROJECT_DIR$/test_data/test_two.txt" />
         <option value="$PROJECT_DIR$/test_data/test_with_overweight_package_and_speedy.txt.go" />
         <option value="$PROJECT_DIR$/test_data/test_with_overweight_package_and_speedy.txt" />
         <option value="$PROJECT_DIR$/main_test.go" />
         <option value="$PROJECT_DIR$/parcel/parcel_test.go" />
-        <option value="$PROJECT_DIR$/parcel/parcel.go" />
         <option value="$PROJECT_DIR$/test_data/test_with_extra_heavy_package_not_overweight.txt" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/parcel/order.go" />
+        <option value="$PROJECT_DIR$/parcel/parcel.go" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="15" />
+    <option name="x" value="14" />
     <option name="width" value="928" />
     <option name="height" value="1030" />
   </component>
@@ -227,7 +238,7 @@
     <layout>
       <window_info id="Designer" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1616267" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13347237" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
@@ -249,19 +260,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test_data/test_one_invoice.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="156">
-            <caret line="8" selection-start-line="8" selection-end-line="8" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_data/test_one.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
@@ -276,28 +274,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parcel/parcel.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="87" column="96" selection-start-line="87" selection-start-column="96" selection-end-line="87" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_data/test_with_overweight_package_and_speedy.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_data/test_with_extra_heavy_package_not_overweight.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
@@ -311,17 +288,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_data/test_one_invoice.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_data/test_with_extra_heavy_package_not_overweight.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_data/test_with_extra_heavy_package_not_overweight_invoice.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="1" column="7" lean-forward="true" selection-end-line="3" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parcel/parcel.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
+        <state relative-caret-position="-399">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parcel/order.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
+        <state relative-caret-position="611">
           <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="569">
+            <caret line="42" selection-start-line="42" selection-end-line="42" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

@@ -12,7 +12,6 @@ const (
 	mediumParcelMaxDimension = 50
 	largeParcelMaxDimension = 100
 
-
 	smallParcelCost      = 3.00
 	mediumParcelCost     = 8.00
 	largeParcelCost      = 15.00
